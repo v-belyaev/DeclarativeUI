@@ -6,8 +6,8 @@ public struct AnyUIBuildItem<T: UINode>: UIBuildItem {
   public subscript<Value>(
     dynamicMember keyPath: ReferenceWritableKeyPath<T, Value>
   ) -> (Value) -> AnyUIBuildItem<T> {
-    return { [weak node] in
-      node?[keyPath: keyPath] = $0
+    return { [node] in
+      node[keyPath: keyPath] = $0
       return self
     }
   }
